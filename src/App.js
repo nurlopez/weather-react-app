@@ -11,8 +11,11 @@ class App extends React.Component {
 
   getWeather = async (e) => {
     e.preventDefault();
+    const city = e.target.elements.city.value;
+    const country = e.target.elements.country.value;
+
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=Barcelona,es&appid=${API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
 
     const data = await api_call.json(); //10.
@@ -62,4 +65,6 @@ export default App; // 3.
  13. in Form.js component file, adding a React attribute called onSubmit, which calls in this.props.getWeather 
 
  14. to prevent full page refresh. Add an argument called 'e' (event object in JS). prevent default behaviour of component when button clicked. 
+ 
+ 15. API data display? Change hard-coded values to dynamic values in the URL, ${nameAttribute}; e.target.elements.name.nameGivenInInput.value
  */
