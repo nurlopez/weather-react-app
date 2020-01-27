@@ -7,9 +7,16 @@ import Weather from "./components/Weather";
 const API_KEY = "a5eead0b0578c1952da5e8ade79ecec0";
 
 class App extends React.Component {
-  // 1.
+  state = {
+    temperature: undefined,
+    city: undefined,
+    country: undefined,
+    humidity: undefined,
+    description: undefined,
+    error: undefined,
+  };
 
-  getWeather = async (e) => {
+  getWeather = async e => {
     e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
@@ -20,6 +27,14 @@ class App extends React.Component {
 
     const data = await api_call.json(); //10.
     console.log(data);
+    this.setState({
+      temperature: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      humidity: data.main.humidity,
+      description: data.weather[0].description,
+      error: ""
+    })
   };
 
   render() {
@@ -27,7 +42,7 @@ class App extends React.Component {
     return (
       <div>
         <Titles />
-        <Form getWeather={this.getWeather} /> 
+        <Form getWeather={this.getWeather} />
         <Weather />
       </div>
     );
@@ -67,4 +82,10 @@ export default App; // 3.
  14. to prevent full page refresh. Add an argument called 'e' (event object in JS). prevent default behaviour of component when button clicked. 
  
  15. API data display? Change hard-coded values to dynamic values in the URL, ${nameAttribute}; e.target.elements.name.nameGivenInInput.value
+ 
+ 16. State = object that lives within the component. Responsible for keeping track of changes within a component (ej. interaction with application that causes data to change)
+
+17. We need temperature, cityname, countryname, humidity, description (5 pieces of state)
+ 
+18. built-in method called '.setState' within which you can describe your state values. Check the object in the console.log(data) to see the properties
  */
