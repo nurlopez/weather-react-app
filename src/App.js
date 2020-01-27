@@ -13,7 +13,7 @@ class App extends React.Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
-    error: undefined,
+    error: undefined
   };
 
   getWeather = async e => {
@@ -34,7 +34,7 @@ class App extends React.Component {
       humidity: data.main.humidity,
       description: data.weather[0].description,
       error: ""
-    })
+    });
   };
 
   render() {
@@ -43,7 +43,14 @@ class App extends React.Component {
       <div>
         <Titles />
         <Form getWeather={this.getWeather} />
-        <Weather />
+        <Weather
+          temperature={this.state.temperature}
+          humidity={this.state.humidity}
+          city={this.state.city}
+          country={this.state.country}
+          description={this.state.description}
+          error={this.state.error}
+        />
       </div>
     );
   }
