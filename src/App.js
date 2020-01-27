@@ -4,32 +4,35 @@ import Titles from "./components/Titles";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
 
-const API_KEY= "a5eead0b0578c1952da5e8ade79ecec0";
+const API_KEY = "a5eead0b0578c1952da5e8ade79ecec0";
 
 
 
 
 class App extends React.Component { // 1.
- 
- getWeather = async () => {
-   const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);  
- 
- const data = await api_call.json(); //10.
-  console.log(data)
 
-}
- 
- 
+  getWeather = async () => {
+    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=Barcelona,es&appid=${API_KEY}&units=metric`);
+
+    const data = await api_call.json(); //10.
+    console.log(data);
+  }
+
+
   render() { // 2.
-  return ( 
-  <div>
-  <Titles />
-  <Form />
-  <Weather />
-  </div>
+    return ( <
+      div >
+      <
+      Titles / >
+      <
+      Form / >
+      <
+      Weather / >
+      <
+      /div>
 
-  );
-};
+    );
+  };
 };
 
 export default App; // 3.
