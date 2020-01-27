@@ -26,6 +26,7 @@ class App extends React.Component {
     );
 
     const data = await api_call.json(); //10.
+    if (city && country) {
     console.log(data);
     this.setState({
       temperature: data.main.temp,
@@ -35,7 +36,18 @@ class App extends React.Component {
       description: data.weather[0].description,
       error: ""
     });
-  };
+  } else {
+    this.setState({
+    
+    temperature: undefined,
+    city: undefined,
+    country: undefined,
+    humidity: undefined,
+    description: undefined,
+    error:"Please enter the value"
+    });
+  }
+}
 
   render() {
     // 2.
@@ -95,4 +107,6 @@ export default App; // 3.
 17. We need temperature, cityname, countryname, humidity, description (5 pieces of state)
  
 18. built-in method called '.setState' within which you can describe your state values. Check the object in the console.log(data) to see the properties
+
+19. What if inputs are left blank? We need to offer Error inputs.
  */
