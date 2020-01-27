@@ -9,7 +9,8 @@ const API_KEY = "a5eead0b0578c1952da5e8ade79ecec0";
 class App extends React.Component {
   // 1.
 
-  getWeather = async () => {
+  getWeather = async (e) => {
+    e.preventDefault();
     const api_call = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=Barcelona,es&appid=${API_KEY}&units=metric`
     );
@@ -59,4 +60,6 @@ export default App; // 3.
  12. We are setting up a prop in <Form getWeather={this.getWeather} and setting its value to this function,this.getWeather
 
  13. in Form.js component file, adding a React attribute called onSubmit, which calls in this.props.getWeather 
+
+ 14. to prevent full page refresh. Add an argument called 'e' (event object in JS). prevent default behaviour of component when button clicked. 
  */
